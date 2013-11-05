@@ -12,7 +12,6 @@ import java.util.UUID;
 
 import junit.framework.TestCase;
 import org.postgresql.test.TestUtil;
-import org.postgresql.util.PGtokenizer;
 import org.postgresql.geometric.PGbox;
 
 public class ArrayTest extends TestCase {
@@ -26,14 +25,10 @@ public class ArrayTest extends TestCase {
     protected void setUp() throws Exception {
         _conn = TestUtil.openDB();
         TestUtil.createTable(_conn, "arrtest", "intarr int[], decarr decimal(2,1)[], strarr text[], uuidarr uuid[]");
-        TestUtil.createTable(_conn, "arrcompprnttest", "id serial, name character(10)");
-        TestUtil.createTable(_conn, "arrcompchldttest", "id serial, name character(10), description character varying, parent integer");
     }
 
     protected void tearDown() throws SQLException {
         TestUtil.dropTable(_conn, "arrtest");
-        TestUtil.dropTable(_conn, "arrcompprnttest");
-        TestUtil.dropTable(_conn, "arrcompchldttest");
         TestUtil.closeDB(_conn);
     }
 
@@ -249,6 +244,4 @@ public class ArrayTest extends TestCase {
 
         pstmt.close();
     }
-    
-    
 }
